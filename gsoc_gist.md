@@ -61,6 +61,11 @@ Now lets discuss each of the Ticket which I have worked on:
 ### [#25897 Incorrect Comparison of embedding index in projective_embedding](https://trac.sagemath.org/ticket/25897)
 
 
+## Summary
+
+Status of ticket which I commited to:
+
+
 | Ticket No | Ticket Summary | Squashed Commit | Status |
 |:---------:|:----------------:|:-----------------:|:--------:|
 | #22771 | [Numerical Precision for Heights in Number Fields](https://trac.sagemath.org/ticket/22771) | [f88426b](https://git.sagemath.org/sage.git/commit?id=219661892657e535333c4131126bbb6213948cf9) | **Merged** |
@@ -78,3 +83,15 @@ Now lets discuss each of the Ticket which I have worked on:
 | #25821 | [Implement height functions for product points](https://trac.sagemath.org/ticket/25821) | [af73f9](https://git.sagemath.org/sage.git/diff?id=31f7661bb4023498e1be80522a94b5a6f69d4d41) | **Merged** |
 | #25878 | [Implement Height function for product morphism](https://trac.sagemath.org/ticket/25878) | [bbadcc6](https://git.sagemath.org/sage.git/commit?id=47959c3f7d057c17aab504f505dd1a2bbcd7c4cf) | **Merged** |
 | #25897 | [Incorrect Comparison of embedding index in projective_embedding](https://trac.sagemath.org/ticket/25897) | [5652a9d](https://git.sagemath.org/sage.git/commit?id=5a9630a763f614f324e84251bf1d4c27a1311cd2) | **Merged** |
+
+<br/>
+
+Status of tickets which I reviewed:
+
+| Ticket No | Ticket Summary | Ticket Author | Status |
+|:---------:|:--------------:|:-------------:|:------:|
+| #23627 | [Update points() in projective_homset.py and affine_homset.py to work over CC and CDF](https://trac.sagemath.org/ticket/23627) | Rebecca Lauren Miller, Raghukul Raman, Ben Hutz | **Merged** |
+| #25156 | [multivariate power series rings don't always format latex properly](https://trac.sagemath.org/ticket/25156) | Brent Baccala, Raghukul Raman | **Merged** |
+| #25242 | [is_polynomial fails when multiple roots](https://trac.sagemath.org/ticket/25242) | Ben Hutz | **Merged** |
+| #25877 | [dehomogenize for projective morphism failure in number field order](https://trac.sagemath.org/ticket/25877) | Ben Hutz | **Positive Reviewed** |
+| #25795 | [minor optimization in comparison between morphisms](https://trac.sagemath.org/ticket/25795)  | Raghukul Raman, Travis Scrimshaw | **Positive Reviewed** |
