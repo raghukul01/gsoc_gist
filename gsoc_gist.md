@@ -357,11 +357,60 @@ CPU time: 0.00 s,  Wall time: 0.00 s
 
 
 ### [#25821 Implement height functions for product points](https://trac.sagemath.org/ticket/25821)
+I added `global_height` and `local_height` function for product projective points. We basically find max of global_height/local_height over each component. For computing `local_height` we also need to pass in any ideal of the base ring. This works in sage now:
+```python
+sage: PP = ProductProjectiveSpaces(QQ, [2,2], 'x')
+sage: Q = PP([1, 7, 5, 18, 2, 3])
+sage: Q.global_height()
+1.94591014905531
+
+sage: P = ProductProjectiveSpaces(QQ, [1,2], 'x')
+sage: Q = P([1, 4, 1/2, 2, 32])
+sage: Q.local_height(2)
+4.15888308335967
+```
+
 
 
 ### [#25878 Implement Height function for product morphism](https://trac.sagemath.org/ticket/25878)
+Height functions for morphisms are defined as follows: 
+ - `local_height`: maximum of the local height of the coefficients in any of the coordinate functions of this map.
+ - `global_height`: maximum of the absolute logarithmic heights of the coefficients in any of the coordinate functions of this map.
+So we simply enumerate over coefficent of all the polynomials and compute heights, and finally return max. However,
+if base ring is `QQbar`, height functions are not present for coefficients. In that we have to convert this map, to a
+map defined over Number Field. This has been left as an TODO. An example of this fix is:
+```python
+sage: u = QQ['u'].0
+sage: R = NumberField(u^2 - 2, 'v')
+sage: PP.<x,y,a,b> = ProductProjectiveSpaces([1, 1], R)
+sage: H = End(PP)
+sage: O = R.maximal_order()
+sage: g = H([3*O(u)*x^2, 13*x*y, 7*a*y, 5*b*x + O(u)*a*y])
+sage: g.global_height()
+2.56494935746154
+
+sage: R.<z> = PolynomialRing(QQ)
+sage: K.<w> = NumberField(z^2-5)
+sage: P.<x,y,a,b> = ProductProjectiveSpaces([1, 1], K)
+sage: H = Hom(P,P)
+sage: f = H([2*x^2 + w/3*y^2, 1/w*y^2, a^2, 6*b^2 + 1/9*a*b])
+sage: f.local_height(K.ideal(3))
+2.19722457733622
+```
+
+
 
 
 ### [#25897 Incorrect Comparison of embedding index in projective_embedding](https://trac.sagemath.org/ticket/25897)
-
+We can define mappings from projective space to affine space using `projective_embedding` and `affine_patch`.
+To generate a projective_embedding, we pass in the embedding index, this index represents the coordinate,
+which we add in to generate projective space. So this index, should be greater than 0 and should be less than or equal to,
+the dimension of affine scheme. This check was buggy in projective_embedding function, which I fixed:
+```python
+sage: A.<x,y> = AffineSpace(ZZ, 2)
+sage: A.projective_embedding(4)
+Traceback (most recent call last):
+...
+ValueError: argument i (=4) must be between 0 and 2, inclusive
+```
 
