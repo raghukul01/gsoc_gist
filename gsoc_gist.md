@@ -50,8 +50,6 @@ Status of tickets which I reviewed:
 ## Detailed version
 
 
-Now lets discuss each of the Ticket which I have worked on in detail:
-
 
 
 ### [#22771 Numerical Precision for Heights in Number Fields](https://trac.sagemath.org/ticket/22771)
@@ -376,6 +374,7 @@ sage: Q.local_height(2)
 Height functions for morphisms are defined as follows: 
  - `local_height`: maximum of the local height of the coefficients in any of the coordinate functions of this map.
  - `global_height`: maximum of the absolute logarithmic heights of the coefficients in any of the coordinate functions of this map.
+
 So we simply enumerate over coefficent of all the polynomials and compute heights, and finally return max. However,
 if base ring is `QQbar`, height functions are not present for coefficients. In that we have to convert this map, to a
 map defined over Number Field. This has been left as an TODO. An example of this fix is:
