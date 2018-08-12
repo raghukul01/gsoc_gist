@@ -264,7 +264,18 @@ sage: enum_product_projective_rational_field(X,4)
 
 
 ### [#25701 Implement Sieve algorithm for product_projective space](https://trac.sagemath.org/ticket/25701)
-#TODO
+Sieve algorithm for product is almost similar to that for projective spaces, but while constructing points
+from modulo points, we use `LLL` reduction on each component and then combine all components. Apart from that
+complexity is also different (used in `good_primes` function). Consider:
+```python
+sage: from sage.schemes.product_projective.rational_point import sieve
+sage: PP.<x,y,z,u,v> = ProductProjectiveSpaces([2,1], QQ)
+sage: X = PP.subscheme([x^2 + y^2 - x*z, u*u-v*u])
+sage: sieve(X,2)
+[(0 : 0 : 1 , 0 : 1), (0 : 0 : 1 , 1 : 1), (1/2 : -1/2 : 1 , 0 : 1),
+ (1/2 : -1/2 : 1 , 1 : 1), (1/2 : 1/2 : 1 , 0 : 1), (1/2 : 1/2 : 1 , 1 : 1),
+ (1 : 0 : 1 , 0 : 1), (1 : 0 : 1 , 1 : 1)]
+```
 
 
 
