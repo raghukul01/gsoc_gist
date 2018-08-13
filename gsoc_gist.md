@@ -148,8 +148,30 @@ rat_points is a set, so complexity of this algorithm is O(n^2log(n)).
 
 
 ### [#23807 Different affine patches are the same object in memory](https://trac.sagemath.org/ticket/23807)
-#TODO
+After [#17008](https://trac.sagemath.org/ticket/17008), projective spaces were made unique, but affine spaces
+were left untouched. As a result if we generate affine patches of a projective space, they were created as same
+object in memory. for example:
 
+```python
+sage: PP = ProjectiveSpace(QQ,1)
+sage: AA = PP.affine_patch(0)
+sage: BB = PP.affine_patch(1)
+sage: AA is BB
+True
+```
+There were 2 possible fixes for this:
+ - Remove UniqueRepresentation from projective spaces and handle [#17008](https://trac.sagemath.org/ticket/17008).
+ - Add UniqueRepresentation for affine spaces, taking into account patching and embedding between affine and projective spaces.
+
+So I took the added second solution, also [Peter](https://www.math.leidenuniv.nl/~pbruin/) suggested on adding embedding_index and ambient projective space as construction parameter for affine spaces. So now since two affine patches had different embedding index, they were different object in memory. I also fixed the patching and embeddinng taking into account Uniqueness of both spaces.
+<br/>
+I also modified generator names for affine patches.
+```python
+sage: P = ProjectiveSpace(QQ, 2, "xyz")
+sage: A = P.affine_patch(0)
+sage: A.gens()
+(y, z)
+```
 
 
 ### [#25529 Implement Sieving to replace search enumeration](https://trac.sagemath.org/ticket/25529)
@@ -198,7 +220,6 @@ T = (N^2*P_max^N) + N^5*(α^dim_scheme/P_max)
 # α is product of all primes, P_max is largest prime in list and N is the dimension of Ambient Space
 ```
 
-<br/>
 For more details of algorithm implementation visit - [Sieve](https://raghukul01.github.io/blog.html#25529).
 
 
