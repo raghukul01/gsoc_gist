@@ -9,7 +9,7 @@ This gist describes all the work that I have done during this period.
 SageMath uses the [Trac](trac.sagemath.org) issue tracking system for development, 
 each ticket has a unique ticket number. These ticket contain all the important discussion 
 regarding that issue, it also contain links to the commit. Apart from coding, I also reviewed 
-some ticket of other sage developers. For convenience I have provides
+some ticket of other SageMath developers. For convenience I have provides
 link to my commits, also current status of each ticket (including reviewed tickets) in following section.
 
 ## Summary
@@ -57,7 +57,7 @@ Status of tickets which I reviewed:
 First part of my project was to implement [Doyle-Krumm Algorithm-4](https://arxiv.org/abs/1403.6501). 
 This algorithm provides an efficient method to compute all elements of a 
 number field (K) having realtive height at most B. 
-Initially in **sage** Algorithm-3 was implemented. So why implement algorithm-4?
+Initially in SageMath Algorithm-3 was implemented. So why implement algorithm-4?
 <br/>
 A computer has a limited memory, hence there is a limit of storing data. 
 Issues are due to the fact that in a computer we cannot work exactly with the
@@ -122,10 +122,12 @@ exactly 3 (due to approximation of real numbers). Algorithm-4 provides a convine
 way of finding approximations that are good enough to gurantee correct results.
 To see my raw implementation click [here](https://paste.ubuntu.com/p/nwtzHqG696/).
 
+
+
 ### [#23627 Update points() in projective_homset.py and affine_homset.py to work over CC and CDF](https://trac.sagemath.org/ticket/23627)
 
 Most of the work in this ticket was done by [Rebecca Miller](https://www.linkedin.com/in/rebecca-lauren-miller-a4ba9b64/)
-and [Prof. Ben](https://sites.google.com/a/slu.edu/benjamin-hutz/). 
+and [Prof. Hutz](https://sites.google.com/a/slu.edu/benjamin-hutz/). 
 My work was to review this ticket and the only contribution I did was to remove duplicate points.
 Due to inaccurate results of groebner basis calculation, same projective points we treated different. So I added a tolerance 
 parameter, if distance between any 2 points is less that tolerance, they are considered same.
@@ -194,15 +196,15 @@ which one takes least amount of time. Time complexity used to return best prime 
 ```
 T = (N^2*P_max^N) + N^5*(α^dim_scheme/P_max)
 ```
-_where α is product of all primes, P_max is largest prime in list and N is the dimension of Ambient Space._
+(_α is product of all primes, P_max is largest prime in list and N is the dimension of Ambient Space_)
 <br/>
 For more details of algorithm implementation visit - [Sieve](https://raghukul01.github.io/blog.html#25529).
 
 
 
 ### [#25564 Implement hash for affine_point](https://trac.sagemath.org/ticket/25564)
-Interestingly `__hash__()` function was not implemented for Affine points in **sage**.
-Adding hash function for Affine points was quite easy compared to for projective
+Interestingly `__hash__()` function was not implemented for affine points in SageMath.
+Adding hash function for affine points was quite easy compared to for projective
 points, where (1,3,6) is same point as (3,9,18). It was simply to hash the list
 of coordinates in that affine point.
 ```python
@@ -366,7 +368,7 @@ CPU time: 0.00 s,  Wall time: 0.00 s
 
 
 ### [#25821 Implement height functions for product points](https://trac.sagemath.org/ticket/25821)
-I added `global_height` and `local_height` function for product projective points. We basically find max of global_height/local_height over each component. For computing `local_height` we also need to pass in any ideal of the base ring. This works in sage now:
+I added `global_height` and `local_height` function for product projective points. We basically find max of global_height/local_height over each component. For computing `local_height` we also need to pass in any ideal of the base ring. This works in SageMath now:
 ```python
 sage: PP = ProductProjectiveSpaces(QQ, [2,2], 'x')
 sage: Q = PP([1, 7, 5, 18, 2, 3])
