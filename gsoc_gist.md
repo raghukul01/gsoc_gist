@@ -193,10 +193,11 @@ I implemented the `good_primes()` function.
 <br/>
 Main idea behind the function is to check for all valid list of primes, and return 
 which one takes least amount of time. Time complexity used to return best prime list is:
-```
+```python
 T = (N^2*P_max^N) + N^5*(α^dim_scheme/P_max)
+# α is product of all primes, P_max is largest prime in list and N is the dimension of Ambient Space
 ```
-(_α is product of all primes, P_max is largest prime in list and N is the dimension of Ambient Space_)
+
 <br/>
 For more details of algorithm implementation visit - [Sieve](https://raghukul01.github.io/blog.html#25529).
 
